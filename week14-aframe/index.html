@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blue Horizon – A-Frame</title>
+
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    <!-- Extras -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene
+      shadows
+      fog="type: linear; color: #87BFFF; near: 10; far: 90"
+      renderer="antialias: true">
+
+      <!-- ================= CAMERA ================= -->
+      <a-entity camera look-controls position="0 1.6 7"></a-entity>
+
+      <!-- ================= SKY (BLUE) ================= -->
+      <a-sky
+        color="#6FA8FF"
+        animation="property: color; dur: 25000; to: #B6DBFF">
+      </a-sky>
+
+      <!-- ================= SUN (COLD LIGHT) ================= -->
+      <a-sphere
+        position="0 4 -40"
+        radius="2"
+        color="#EAF3FF"
+        emissive="#EAF3FF"
+        emissiveIntensity="0.8"
+        animation="property: position; dur: 40000; to: 0 1 -40; easing: linear">
+      </a-sphere>
+
+      <!-- ================= LIGHTING ================= -->
+      <a-light
+        type="directional"
+        color="#E0EEFF"
+        intensity="0.9"
+        position="0 10 -15"
+        castShadow>
+      </a-light>
+
+      <a-light
+        type="ambient"
+        color="#BFD9FF"
+        intensity="0.35">
+      </a-light>
+
+      <!-- ================= SEA (DARK BLUE) ================= -->
+      <a-entity
+        water="color: #1E3A5F; opacity: 0.85; waveHeight: 0.25; waveSpeed: 0.6"
+        rotation="-90 0 0"
+        position="0 0 -30"
+        width="140"
+        height="140">
+      </a-entity>
+
+      <!-- ================= REFLECTION ================= -->
+      <a-plane
+        rotation="-90 0 0"
+        position="0 0.03 -30"
+        width="5"
+        height="35"
+        material="color: #DCEBFF; transparent: true; opacity: 0.18; shader: flat"
+        animation="property: material.opacity; dir: alternate; dur: 2200; to: 0.08; loop: true">
+      </a-plane>
+
+      <!-- ================= SHORE ================= -->
+      <a-plane
+        rotation="-90 0 0"
+        width="55"
+        height="25"
+        position="0 0 7"
+        color="#D1D9E6"
+        receive-shadow>
+      </a-plane>
+
+      <!-- ================= ROCK SILHOUETTES ================= -->
+      <a-sphere position="-7 0.8 3" radius="1.2" color="#1A1F2B"></a-sphere>
+      <a-sphere position="-5 0.6 4" radius="0.8" color="#0F1420"></a-sphere>
+
+      <a-sphere position="8 0.9 2" radius="1.1" color="#1A1F2B"></a-sphere>
+
+      <!-- ================= OCEAN SOUND ================= -->
+      <a-entity
+        sound="src: https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f5f5d77db.mp3;
+               autoplay: true;
+               loop: true;
+               volume: 0.35">
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
